@@ -1,0 +1,10 @@
+apiVersion: skaffold/v2beta27
+kind: Config
+metadata:
+  name: kubernetes-grafana
+deploy:
+  kubectl:
+    manifests:
+      - grafana-datasource-config.yaml
+      - deployment.yaml
+      - service.yaml
