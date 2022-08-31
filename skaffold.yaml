@@ -5,6 +5,9 @@ metadata:
 deploy:
   kubectl:
     manifests:
-      - grafana-datasource-config.yaml
-      - deployment.yaml
-      - service.yaml
+    - 00-namespace.yaml
+    - 01-grafana-datasource-config.yaml
+    - 02-grafana-pv.yaml
+    - 03-grafana-pvc.yaml
+    - 04-grafana-deployment.yaml
+    - 05-grafa-service.yaml
