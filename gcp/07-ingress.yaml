@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ui
+  namespace: monitoring-grafana
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: grafana-proxy
+    networking.gke.io/managed-certificates: grafana-cert
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+    - host: grafana.motivus.cl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  name: svc-port

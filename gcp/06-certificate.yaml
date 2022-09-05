@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  namespace: monitoring-grafana
+  name: grafana-cert
+spec:
+  domains:
+    - grafana.motivus.cl

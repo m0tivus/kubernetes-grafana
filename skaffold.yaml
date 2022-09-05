@@ -2,12 +2,26 @@ apiVersion: skaffold/v2beta27
 kind: Config
 metadata:
   name: kubernetes-grafana
-deploy:
-  kubectl:
-    manifests:
-    - 00-namespace.yaml
-    - 01-grafana-datasource-config.yaml
-    - 02-grafana-pv.yaml
-    - 03-grafana-pvc.yaml
-    - 04-grafana-deployment.yaml
-    - 05-grafa-service.yaml
+profiles:
+  - name: dev
+    deploy:
+      kubectl:
+        manifests:
+        - dev/00-namespace.yaml
+        - dev/01-grafana-datasource-config.yaml
+        - dev/02-grafana-pv.yaml
+        - dev/03-grafana-pvc.yaml
+        - dev/04-grafana-deployment.yaml
+        - dev/05-grafa-service.yaml
+  - name: gcp
+    deploy:
+      kubectl:
+        manifests:
+        - gcp/00-namespace.yaml
+        - gcp/01-grafana-datasource-config.yaml
+        - gcp/02-storage-class.yaml
+        - gcp/03-pvc.yaml
+        - gcp/04-deployment.yaml
+        - gcp/05-service.yaml
+        - gcp/06-certificate.yaml
+        - gcp/07-ingress.yaml
